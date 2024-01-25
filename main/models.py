@@ -47,7 +47,7 @@ class Subscribers(models.Model):
     Email = models.CharField(max_length=255)
 
 
-class Articles(models.Model):
+class Testimonial(models.Model):
     Title = models.CharField(max_length=255)
     Author = models.CharField(max_length=255)
     Content = models.TextField(null=True)

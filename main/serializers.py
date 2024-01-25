@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Video, Home, Banner, Contacts, Subscribers, Articles, Brand
+from .models import Video, Home, Banner, Contacts, Subscribers, Testimonial, Brand
 
 
 class VideoSerializer(serializers.ModelSerializer):
@@ -34,9 +34,9 @@ class SubscribersSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ArticlesSerializer(serializers.ModelSerializer):
+class TestimonialSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Articles
+        model = Testimonial
         fields = '__all__'
 
 

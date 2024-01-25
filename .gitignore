@@ -1,0 +1,38 @@
+# Compiled Python files
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+env/
+.env
+
+# IDE (PyCharm, VSCode, etc.) configurations
+.idea/
+.vscode/
+
+# Database files
+db.sqlite3
+
+# Static files
+/static/
+
+# Media files
+/media/
+
+# Compiled files
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+
+# Temporary files
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+Thumbs.db

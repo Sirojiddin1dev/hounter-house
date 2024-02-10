@@ -1,7 +1,29 @@
 from django.urls import path
-from .views import HomeListView, BannerListView, TestimonialListView, AboutHomeListView, ContactDetailView, BrandListView
+from .views import *
 
 urlpatterns = [
+    path('index/', home_view, name='index_url'),
+    path('user-detail/<int:pk>/', user_detail_view, name='user_detail_url'),
+    path('update_user/<int:pk>/', update_user_view, name='update_user_url'),
+    path('user/', user_view, name='users_url'),
+    path('', login_view, name='login_url'),
+    path('create-house/', create_home_view, name='create_house_url'),
+    path('create-brand/', create_brand, name='create_brand_url'),
+    path('update-brand/<int:pk>/', update_brand, name='update_brand_url'),
+    path('delete-brand/<int:pk>/', delete_brand, name='delete_brand_url'),
+    path('create-banner/', create_banner, name='create_banner_url'),
+    path('update-banner/<int:pk>/', update_banner, name='update_banner_url'),
+    path('delete-banner/<int:pk>/', delete_banner, name='delete_banner_url'),
+    path('update-house/<int:pk>/', update_home_view, name='update_house_url'),
+    path('delete-house/<int:pk>/', delete_home_view, name='delete_house_url'),
+    path('delete-user/<int:pk>/', delete_user_view, name='delete_user_url'),
+    path('new-home/', home_page_view, name='home_page_url'),
+    path('popular_home/', popular_home_view, name='popular_home_url'),
+    path('best_home/', best_home_view, name='best_home_url'),
+    path('apartment_home/', apartment_view, name='apartment_home_url'),
+    path('house_home/', house_view, name='house_home_url'),
+    path('villa_home/', villa_view, name='villa_home_url'),
+    path('brand-banner/', banner_view, name='banner_url'),
     path('api/homes/', HomeListView.as_view(), name='home-list'),
     path('api/banner/', BannerListView.as_view(), name='banner-list'),
     path('api/testimonials/', TestimonialListView.as_view(), name='testimonial-list'),

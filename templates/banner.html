@@ -1,0 +1,387 @@
+{% extends 'base.html' %}
+{% block content %}
+            <!--begin::Row-->
+			<div class="row">
+				<div class="col-lg-5">
+										<!--begin::Advance Table Widget 3-->
+										<div class="card card-custom card-stretch gutter-b">
+											<!--begin::Header-->
+											<div class="card-header border-0 py-5">
+												<h3 class="card-title align-items-start flex-column">
+													<span class="card-label font-weight-bolder text-dark">All Brand</span>
+												</h3>
+												<div class="card-toolbar">
+													<a href="#"  style="margin-top: 50px;" class="btn btn-light-success font-weight-bold mr-2" data-toggle="modal" data-target="#exampleModalScrol">New Brand</a>
+                                                    <!-- Modal-->
+                                                    <div class="modal fade" id="exampleModalScrol" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+																<div class="modal-dialog modal-dialog-scrollable" role="document">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<h5 class="modal-title" id="exampleModalLabel">Create Brand</h5>
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																				<i aria-hidden="true" class="ki ki-close"></i>
+																			</button>
+																		</div>
+																		<div class="modal-body" style="height: 300px;">
+																			<div class="modal-content">
+																				<form action="{% url 'create_brand_url' %}" method="post" enctype="multipart/form-data">
+																					{% csrf_token %}
+
+																					<!-- Add input fields for each attribute of the Home model -->
+																					<label>Name:</label>
+																					<input type="text" name="name" required><br><br>
+
+																					<label>Home Image:</label>
+																					<input type="file" name="img" accept="image/*" required><br><br>
+
+																					<div class="modal-footer">
+																						<button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
+																						<button type="submit" class="btn btn-primary font-weight-bold">Save changes</button>
+																					</div>
+																				</form>
+																			</div>
+																		</div>
+
+																	</div>
+																</div>
+															</div>
+												</div>
+											</div>
+											<!--end::Header-->
+											<!--begin::Body-->
+											<div class="card-body pt-0 pb-3">
+												<!--begin::Table-->
+												<div class="table-responsive">
+													<table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
+														<thead>
+															<tr class="text-uppercase">
+																<th style="min-width: 150px" class="pl-7">
+																	<span class="text-dark-75">Brand name</span>
+																</th>
+																<th style="min-width: 100px">Brand image</th>
+																<th style="min-width: 100px">Update</th>
+																<th style="min-width: 100px">Delete</th>
+															</tr>
+														</thead>
+														<tbody>
+														{% for i in a %}
+															<tr>
+																<td class="pl-0 py-8">
+																	<span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ i.name }}</span>
+																</td>
+																<td>
+																	<span class="text-dark-75 font-weight-bolder d-block font-size-lg"><img height="50" width="100" src="{{ i.img.url }}" alt="bu yerda rasm bor"></span>
+																</td>
+																<td>
+																		<!-- Button trigger modal-->
+																	<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#update{{ i.id }}">
+																		Update Brand
+																	</button>
+
+																	<!-- Modal-->
+																	<div class="modal fade" id="update{{ i.id }}" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+																		<div class="modal-dialog modal-dialog-scrollable" role="document">
+																			<div class="modal-content">
+																				<div class="modal-header">
+																					<h5 class="modal-title" id="exampleModalLabel">Update Brand</h5>
+																					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																						<i aria-hidden="true" class="ki ki-close"></i>
+																					</button>
+																				</div>
+																				<div class="modal-body" style="height: 300px;">
+																					<!--begin::Entry-->
+																					<div class="d-flex flex-column-fluid">
+																						<!--begin::Container-->
+																						<div class="container">
+																							<!--begin::Card-->
+																							<div class="card card-custom card-sticky" id="kt_page_sticky_card">
+																								<div class="card-body">
+																									<!--begin::Form-->
+																									<form action="{% url 'update_brand_url' i.id %}" method="post" enctype="multipart/form-data">
+																										{% csrf_token %}
+
+																										<!-- Add input fields with initial values for each attribute of the Home model -->
+																										<label>Name:</label>
+																										<input type="text" name="name" value="{{ i.name }}" required><br><br>
+
+																										<label>Home Image:</label>
+																										<input type="file" name="img" accept="image/*"><br><br>
+
+																										<button type="submit">Update Brand</button>
+																									</form>
+																								</div>
+																							</div>
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</td>
+																<td>
+																	<!-- Button trigger modal-->
+																	<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal{{ i.id }}">
+																		Delete
+																	</button>
+
+																	<!-- Modal-->
+																	<div class="modal fade" id="exampleModal{{ i.id }}" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+																		<div class="modal-dialog" role="document">
+																			<div class="modal-content">
+																				<div class="modal-header">
+																					<h5 class="modal-title" id="exampleModalLabel">O'chirish</h5>
+																					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																						<i aria-hidden="true" class="ki ki-close"></i>
+																					</button>
+																				</div>
+																				<div class="modal-body">
+																					O'chirib yuborishga aminmisiz
+																				</div>
+																				<div class="modal-footer">
+																					<button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
+																					<button type="button" class="btn btn-light"><a href="{% url 'delete_brand_url' i.id %}" class="btn btn-light-danger font-weight-bold mr-2">Delete</a></button>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</td>
+															</tr>
+														{% endfor %}
+														</tbody>
+													</table>
+													{% if a.paginator.num_pages > 1 %}
+														<div class="card-footer d-flex justify-content-end">
+															<nav aria-label="Page navigation">
+															  <ul class="pagination">
+																{% if a.has_previous %}
+																  <li class="page-item">
+																	<a class="page-link" href="?page={{ a.previous_page_number }}">
+																	  Previous
+																	</a>
+																  </li>
+																{% endif %}
+																{% for num in a.paginator.page_range %}
+																{% if num == a.number %}
+																<li class="page-item active">
+																  <a class="page-link" href="#" tabindex="-1">{{ num }}</a>
+																</li>
+																{% elif num > a.number|add:'-2' and num < a.number|add:'2' %}
+																<li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+																{% endif %}
+																{% endfor %}
+																{% if a.has_next %}
+																<li class="page-item">
+																  <a class="page-link" href="?page={{ a.next_page_number }}">
+																	Next
+																  </a>
+																</li>
+																{% endif %}
+															  </ul>
+															</nav>
+														  </div>
+													{% endif %}
+												</div>
+												<!--end::Table-->
+											</div>
+											<!--end::Body-->
+										</div>
+										<!--end::Advance Table Widget 3-->
+									</div>
+				<div class="col-lg-7">
+										<!--begin::Advance Table Widget 3-->
+										<div class="card card-custom card-stretch gutter-b">
+											<!--begin::Header-->
+											<div class="card-header border-0 py-5">
+												<h3 class="card-title align-items-start flex-column">
+													<span class="card-label font-weight-bolder text-dark">All Banner</span>
+												</h3>
+												<div class="card-toolbar">
+													<a href="#"  style="margin-top: 50px;" class="btn btn-light-success font-weight-bold mr-2" data-toggle="modal" data-target="#exampleModalScro">New Banner</a>
+                                                    <!-- Modal-->
+                                                    <div class="modal fade" id="exampleModalScro" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+																<div class="modal-dialog modal-dialog-scrollable" role="document">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<h5 class="modal-title" id="exampleModalLabel">Create Brand</h5>
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																				<i aria-hidden="true" class="ki ki-close"></i>
+																			</button>
+																		</div>
+																		<div class="modal-body" style="height: 300px;">
+																			<div class="modal-content">
+																				<form action="{% url 'create_banner_url' %}" method="post" enctype="multipart/form-data">
+																					{% csrf_token %}
+
+																					<!-- Add input fields for each attribute of the Home model -->
+																					<label>Name:</label>
+																					<input type="text" name="banner" required><br><br>
+
+																					<label>Name:</label>
+																					<input type="text" name="description" required><br><br>
+
+																					<label>Home Image:</label>
+																					<input type="file" name="img" accept="image/*" required><br><br>
+
+																					<div class="modal-footer">
+																						<button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
+																						<button type="submit" class="btn btn-primary font-weight-bold">Save changes</button>
+																					</div>
+																				</form>
+																			</div>
+																		</div>
+
+																	</div>
+																</div>
+															</div>
+												</div>
+											</div>
+											<!--end::Header-->
+											<!--begin::Body-->
+											<div class="card-body pt-0 pb-3">
+												<!--begin::Table-->
+												<div class="table-responsive">
+													<table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
+														<thead>
+															<tr class="text-uppercase">
+																<th style="min-width: 140px" class="pl-7">
+																	<span class="text-dark-75">Banner title</span>
+																</th>
+																<th style="min-width: 150px">Description</th>
+																<th style="min-width: 100px">Brand image</th>
+																<th style="min-width: 100px">Update</th>
+																<th style="min-width: 100px">Delete</th>
+															</tr>
+														</thead>
+														<tbody>
+														{% for i in ab %}
+															<tr>
+																<td class="pl-0 py-8">
+																	<span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ i.banner }}</span>
+																</td>
+																<td class="pl-0 py-8">
+																	<span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ i.description }}</span>
+																</td>
+																<td>
+																	<span class="text-dark-75 font-weight-bolder d-block font-size-lg"><img height="50" width="100" src="{{ i.img.url }}" alt="bu yerda rasm bor"></span>
+																</td>
+																<td>
+																		<!-- Button trigger modal-->
+																	<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#update_banner{{ i.id }}">
+																		Update Brand
+																	</button>
+
+																	<!-- Modal-->
+																	<div class="modal fade" id="update_banner{{ i.id }}" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+																		<div class="modal-dialog modal-dialog-scrollable" role="document">
+																			<div class="modal-content">
+																				<div class="modal-header">
+																					<h5 class="modal-title" id="exampleModalLabel">Update Brand</h5>
+																					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																						<i aria-hidden="true" class="ki ki-close"></i>
+																					</button>
+																				</div>
+																				<div class="modal-body" style="height: 300px;">
+																					<!--begin::Entry-->
+																					<div class="d-flex flex-column-fluid">
+																						<!--begin::Container-->
+																						<div class="container">
+																							<!--begin::Card-->
+																							<div class="card card-custom card-sticky" id="kt_page_sticky_card">
+																								<div class="card-body">
+																									<!--begin::Form-->
+																									<form action="{% url 'update_banner_url' i.id %}" method="post" enctype="multipart/form-data">
+																										{% csrf_token %}
+
+																										<!-- Add input fields with initial values for each attribute of the Home model -->
+																										<label>Name:</label>
+																										<input type="text" name="banner" value="{{ i.banner }}" required><br><br>
+
+																										<label>Name:</label>
+																										<input type="text" name="description" value="{{ i.description }}" required><br><br>
+
+																										<label>Home Image:</label>
+																										<input type="file" name="img" accept="image/*"><br><br>
+
+																										<button type="submit">Update Brand</button>
+																									</form>
+																								</div>
+																							</div>
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</td>
+																<td>
+																	<!-- Button trigger modal-->
+																	<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModa{{ i.id }}">
+																		Delete
+																	</button>
+
+																	<!-- Modal-->
+																	<div class="modal fade" id="exampleModa{{ i.id }}" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+																		<div class="modal-dialog" role="document">
+																			<div class="modal-content">
+																				<div class="modal-header">
+																					<h5 class="modal-title" id="exampleModalLabel">O'chirish</h5>
+																					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																						<i aria-hidden="true" class="ki ki-close"></i>
+																					</button>
+																				</div>
+																				<div class="modal-body">
+																					O'chirib yuborishga aminmisiz
+																				</div>
+																				<div class="modal-footer">
+																					<button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
+																					<button type="button" class="btn btn-light"><a href="{% url 'delete_banner_url' i.id %}" class="btn btn-light-danger font-weight-bold mr-2">Delete</a></button>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</td>
+															</tr>
+														{% endfor %}
+														</tbody>
+													</table>
+													{% if ab.paginator.num_pages > 1 %}
+														  <div class="card-footer d-flex justify-content-end">
+															<nav aria-label="Page navigation">
+															  <ul class="pagination">
+																{% if ab.has_previous %}
+																  <li class="page-item">
+																	<a class="page-link" href="?page={{ ab.previous_page_number }}">
+																	  Previous
+																	</a>
+																  </li>
+																{% endif %}
+																{% for num in ab.paginator.page_range %}
+																{% if num == ab.number %}
+																<li class="page-item active">
+																  <a class="page-link" href="#" tabindex="-1">{{ num }}</a>
+																</li>
+																{% elif num > ab.number|add:'-2' and num < ab.number|add:'2' %}
+																<li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+																{% endif %}
+																{% endfor %}
+																{% if ab.has_next %}
+																<li class="page-item">
+																  <a class="page-link" href="?page={{ ab.next_page_number }}">
+																	Next
+																  </a>
+																</li>
+																{% endif %}
+															  </ul>
+															</nav>
+														  </div>
+													{% endif %}
+												</div>
+												<!--end::Table-->
+											</div>
+											<!--end::Body-->
+										</div>
+										<!--end::Advance Table Widget 3-->
+									</div>
+			</div>
+			<!--end::Row-->
+{% endblock %}

@@ -1,4 +1,24 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.core.validators import RegexValidator
+
+
+class User(AbstractUser):
+    img = models.ImageField(upload_to='user_image/')
+    phone_number = models.CharField(max_length=13, verbose_name='Telefon raqam', null=True, blank=True, validators=[
+        RegexValidator(
+            regex='^[\+]9{2}8{1}[0-9]{9}$',
+            message='Invalid phone number',
+            code='invalid_number'
+        ), ])
+
+    class Meta(AbstractUser.Meta):
+        swappable = 'AUTH_USER_MODEL'
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'
+
+    def __str__(self):
+        return self.username
 
 
 class Video(models.Model):
@@ -18,22 +38,22 @@ class Home(models.Model):
         ('best deals', 'best deals')
     )
     status = models.CharField(max_length=50, choices=Status)
-    video = models.ManyToManyField(Video)
+    Category = (
+        ('House', 'House'),
+        ('Villa', 'Villa'),
+        ('Apartment', 'Apartment')
+    )
+    category = models.CharField(max_length=50, choices=Category)
+    # video = models.ManyToManyField(Video)
     bathrooms = models.IntegerField()
     bedrooms = models.IntegerField()  # Fix typo in the field name
     carports = models.IntegerField()
     floors = models.IntegerField()
     descriptions = models.CharField(max_length=255)
-    created_at = models.DateField()
+    created_at = models.DateTimeField()
 
     def __str__(self):
         return self.name
-
-
-class Banner(models.Model):
-    banner = models.CharField(max_length=255)
-    description = models.CharField(max_length=255, null=True)
-    img = models.ImageField(upload_to='banner_img/')
 
 
 class Contacts(models.Model):
@@ -61,3 +81,8 @@ class Brand(models.Model):
     name = models.CharField(max_length=255)
     img = models.ImageField(upload_to='brand_img/')
 
+
+class Banner(models.Model):
+    banner = models.CharField(max_length=255)
+    description = models.CharField(max_length=255, null=True)
+    img = models.ImageField(upload_to='banner_img/')

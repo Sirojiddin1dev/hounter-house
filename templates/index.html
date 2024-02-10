@@ -1,0 +1,495 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+						<!--begin::Entry-->
+						<div class="d-flex flex-column-fluid">
+							<!--begin::Container-->
+							<div class="container">
+								<!--begin::Dashboard-->
+								<!--begin::Row-->
+								<div class="row">
+									<div class="col-lg-6 col-xxl-4">
+										<!--begin::Mixed Widget 1-->
+										<div class="card card-custom bg-gray-100 card-stretch gutter-b">
+											<!--begin::Header-->
+											<div class="card-header border-0 bg-dark py-5">
+												<h3 class="card-title font-weight-bolder text-white">Sales Stat</h3>
+												<div class="card-toolbar">
+													<div class="dropdown dropdown-inline">
+														<a href="#" class="btn btn-transparent-white btn-sm font-weight-bolder dropdown-toggle px-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Export</a>
+														<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+															<!--begin::Navigation-->
+															<ul class="navi navi-hover">
+																<li class="navi-header pb-1">
+																	<span class="text-primary text-uppercase font-weight-bold font-size-sm">Add new:</span>
+																</li>
+																<li class="navi-item">
+																	<a href="#" class="navi-link">
+																		<span class="navi-icon">
+																			<i class="flaticon2-shopping-cart-1"></i>
+																		</span>
+																		<span class="navi-text">Order</span>
+																	</a>
+																</li>
+																<li class="navi-item">
+																	<a href="#" class="navi-link">
+																		<span class="navi-icon">
+																			<i class="flaticon2-calendar-8"></i>
+																		</span>
+																		<span class="navi-text">Event</span>
+																	</a>
+																</li>
+																<li class="navi-item">
+																	<a href="#" class="navi-link">
+																		<span class="navi-icon">
+																			<i class="flaticon2-graph-1"></i>
+																		</span>
+																		<span class="navi-text">Report</span>
+																	</a>
+																</li>
+																<li class="navi-item">
+																	<a href="#" class="navi-link">
+																		<span class="navi-icon">
+																			<i class="flaticon2-rocket-1"></i>
+																		</span>
+																		<span class="navi-text">Post</span>
+																	</a>
+																</li>
+																<li class="navi-item">
+																	<a href="#" class="navi-link">
+																		<span class="navi-icon">
+																			<i class="flaticon2-writing"></i>
+																		</span>
+																		<span class="navi-text">File</span>
+																	</a>
+																</li>
+															</ul>
+															<!--end::Navigation-->
+														</div>
+													</div>
+												</div>
+											</div>
+											<!--end::Header-->
+											<!--begin::Body-->
+											<div class="card-body p-0 position-relative overflow-hidden">
+												<!--begin::Chart-->
+												<div id="kt_mixed_widget_1_chart" class="card-rounded-bottom bg-dark" style="height: 200px"></div>
+												<!--end::Chart-->
+												<!--begin::Stats-->
+												<div class="card-spacer mt-n25">
+													<!--begin::Row-->
+													<div class="row m-0">
+														<div class="col bg-light-warning px-6 py-8 rounded-xl mr-7 mb-7">
+															<span class="svg-icon svg-icon-3x svg-icon-primary d-block my-2"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Home\Home.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																	<rect x="0" y="0" width="24" height="24"/>
+																	<path d="M3.95709826,8.41510662 L11.47855,3.81866389 C11.7986624,3.62303967 12.2013376,3.62303967 12.52145,3.81866389 L20.0429,8.41510557 C20.6374094,8.77841684 21,9.42493654 21,10.1216692 L21,19.0000642 C21,20.1046337 20.1045695,21.0000642 19,21.0000642 L4.99998155,21.0000673 C3.89541205,21.0000673 2.99998155,20.1046368 2.99998155,19.0000673 L2.99999828,10.1216672 C2.99999935,9.42493561 3.36258984,8.77841732 3.95709826,8.41510662 Z M10,13 C9.44771525,13 9,13.4477153 9,14 L9,17 C9,17.5522847 9.44771525,18 10,18 L14,18 C14.5522847,18 15,17.5522847 15,17 L15,14 C15,13.4477153 14.5522847,13 14,13 L10,13 Z" fill="#000000"/>
+																</g>
+															</svg><!--end::Svg Icon--></span>
+
+<!-- Button trigger modal-->
+															<a href="#"  style="margin-top: 50px;" data-toggle="modal" data-target="#exampleModalScro">New Hause</a>
+															<!-- Modal-->
+															<div class="modal fade" id="exampleModalScro" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+																<div class="modal-dialog modal-dialog-scrollable" role="document">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<h5 class="modal-title" id="exampleModalLabel">Create house</h5>
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																				<i aria-hidden="true" class="ki ki-close"></i>
+																			</button>
+																		</div>
+																		<div class="modal-body" style="height: 500px;">
+																			<div class="modal-content">
+																				<form action="{% url 'create_house_url' %}" method="post" enctype="multipart/form-data">
+																					{% csrf_token %}
+
+																					<!-- Add input fields for each attribute of the Home model -->
+																					<label>Name:</label>
+																					<input type="text" name="name" required><br><br>
+
+																					<label>Home Image:</label>
+																					<input type="file" name="home_img" accept="image/*" required><br><br>
+
+																					<!-- Add input fields for the remaining attributes of the Home model -->
+																					<label>Price:</label>
+																					<input type="number" name="price" required><br><br>
+
+																					<label>User Image:</label>
+																					<input type="file" name="user_img" accept="image/*" required><br><br>
+
+																					<label>User Name:</label>
+																					<input type="text" name="user_name" required><br><br>
+
+																					<label>User Location:</label>
+																					<input type="text" name="user_location" required><br><br>
+
+																					<label>Status:</label>
+																					<select name="status" required>
+																						<option value="popular">Popular</option>
+																						<option value="new house">New House</option>
+																						<option value="best deals">Best Deals</option>
+																					</select><br><br>
+
+																					<label>Category:</label>
+																					<select name="category" required>
+																						<option value="House">House</option>
+																						<option value="Villa">Villa</option>
+																						<option value="Apartment">Apartment</option>
+																					</select><br><br>
+
+																					<label>Bathrooms:</label>
+																					<input type="number" name="bathrooms" required><br><br>
+
+																					<label>Bedrooms:</label>
+																					<input type="number" name="bedrooms" required><br><br>
+
+																					<label>Carports:</label>
+																					<input type="number" name="carports" required><br><br>
+
+																					<label>Floors:</label>
+																					<input type="number" name="floors" required><br><br>
+
+																					<label>Descriptions:</label>
+																					<textarea name="descriptions" rows="4" cols="50" required></textarea><br><br>
+
+																					<label>Created At:</label>
+																					<input type="date" name="created_at" required><br><br>
+
+
+																					<div class="modal-footer">
+																						<button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
+																						<button type="submit" class="btn btn-primary font-weight-bold">Save changes</button>
+																					</div>
+																				</form>
+																			</div>
+																		</div>
+
+																	</div>
+																</div>
+															</div>
+
+
+														</div>
+														<div class="col bg-light-primary px-6 py-8 rounded-xl mb-7">
+															<span class="svg-icon svg-icon-3x svg-icon-primary d-block my-2">
+																<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg-->
+																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																		<polygon points="0 0 24 0 24 24 0 24" />
+																		<path d="M18,8 L16,8 C15.4477153,8 15,7.55228475 15,7 C15,6.44771525 15.4477153,6 16,6 L18,6 L18,4 C18,3.44771525 18.4477153,3 19,3 C19.5522847,3 20,3.44771525 20,4 L20,6 L22,6 C22.5522847,6 23,6.44771525 23,7 C23,7.55228475 22.5522847,8 22,8 L20,8 L20,10 C20,10.5522847 19.5522847,11 19,11 C18.4477153,11 18,10.5522847 18,10 L18,8 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+																		<path d="M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
+																	</g>
+																</svg>
+
+																<!--end::Svg Icon-->
+															</span>
+
+															<!-- Button trigger modal-->
+															<a href="#" data-toggle="modal" data-target="#exampleModalScrollable">New user</a>
+															<!-- Modal-->
+															<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+																<div class="modal-dialog modal-dialog-scrollable" role="document">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																				<i aria-hidden="true" class="ki ki-close"></i>
+																			</button>
+																		</div>
+																		<div class="modal-body" style="height: 500px width: 300px">
+																			<div class="modal-content">
+																				<form action="{% url 'create_user_url' %}" class="form form--fit" style="background-color: #ffffff;
+																																	border-radius: 8px;
+																																	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+																																	padding: 20px;
+																																	width: 300px;
+																																	text-align: center;" method="post">
+																					{% csrf_token %}
+
+																					<!-- Add input fields for each attribute of the User model -->
+																					<label>Username:</label>
+																					<input style="
+																						width: 100%;
+																						padding: 10px;
+																						margin: 8px 0;
+																						box-sizing: border-box;
+																					" type="text" name="username" required><br><br><br>
+
+																					<label>Password:</label>
+																					<input style="
+																						width: 100%;
+																						padding: 10px;
+																						margin: 8px 0;
+																						box-sizing: border-box;
+																					" type="password" name="password" required><br><br><br>
+
+																					<label>Phone Number:</label>
+																					<input style="
+																						width: 100%;
+																						padding: 10px;
+																						margin: 8px 0;
+																						box-sizing: border-box;
+																					" type="text" name="phone_number" required><br><br><br>
+
+																					<div class="modal-footer">
+																						<button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
+																						<button type="submit" class="btn btn-primary font-weight-bold">Save changes</button>
+																					</div>
+																				</form>
+																			</div>
+																		</div>
+
+																	</div>
+																</div>
+															</div>
+
+														</div>
+
+													</div>
+													<!--end::Row-->
+													<!--begin::Row-->
+													<div class="row m-0">
+														<div class="col bg-light-info px-6 py-8 rounded-xl mr-7 mb-7">
+															<span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Bookmark.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																	<rect x="0" y="0" width="24" height="24"/>
+																	<path d="M8,4 L16,4 C17.1045695,4 18,4.8954305 18,6 L18,17.726765 C18,18.2790497 17.5522847,18.726765 17,18.726765 C16.7498083,18.726765 16.5087052,18.6329798 16.3242754,18.4639191 L12.6757246,15.1194142 C12.2934034,14.7689531 11.7065966,14.7689531 11.3242754,15.1194142 L7.67572463,18.4639191 C7.26860564,18.8371115 6.63603827,18.8096086 6.26284586,18.4024896 C6.09378519,18.2180598 6,17.9769566 6,17.726765 L6,6 C6,4.8954305 6.8954305,4 8,4 Z" fill="#000000"/>
+																</g>
+															</svg><!--end::Svg Icon--></span><br><br>
+
+<!-- Button trigger modal-->
+															<a href="#"  style="margin-top: 50px;" data-toggle="modal" data-target="#exampleModalScrol">New Brand</a>
+															<!-- Modal-->
+															<div class="modal fade" id="exampleModalScrol" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+																<div class="modal-dialog modal-dialog-scrollable" role="document">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<h5 class="modal-title" id="exampleModalLabel">Create Brand</h5>
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																				<i aria-hidden="true" class="ki ki-close"></i>
+																			</button>
+																		</div>
+																		<div class="modal-body" style="height: 300px;">
+																			<div class="modal-content">
+																				<form action="{% url 'create_brand_url' %}" method="post" enctype="multipart/form-data">
+																					{% csrf_token %}
+
+																					<!-- Add input fields for each attribute of the Home model -->
+																					<label>Name:</label>
+																					<input type="text" name="name" required><br><br>
+
+																					<label>Home Image:</label>
+																					<input type="file" name="img" accept="image/*" required><br><br>
+
+																					<div class="modal-footer">
+																						<button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
+																						<button type="submit" class="btn btn-primary font-weight-bold">Save changes</button>
+																					</div>
+																				</form>
+																			</div>
+																		</div>
+
+																	</div>
+																</div>
+															</div>
+
+
+														</div>
+														<div class="col bg-light-success px-6 py-8 rounded-xl mr-7 mb-7">
+															<span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Clothes\Crown.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																	<polygon points="0 0 24 0 24 24 0 24"/>
+																	<path d="M11.2600599,5.81393408 L2,16 L22,16 L12.7399401,5.81393408 C12.3684331,5.40527646 11.7359848,5.37515988 11.3273272,5.7466668 C11.3038503,5.7680094 11.2814025,5.79045722 11.2600599,5.81393408 Z" fill="#000000" opacity="0.3"/>
+																	<path d="M12.0056789,15.7116802 L20.2805786,6.85290308 C20.6575758,6.44930487 21.2903735,6.42774054 21.6939717,6.8047378 C21.8964274,6.9938498 22.0113578,7.25847607 22.0113578,7.535517 L22.0113578,20 L16.0113578,20 L2,20 L2,7.535517 C2,7.25847607 2.11493033,6.9938498 2.31738608,6.8047378 C2.72098429,6.42774054 3.35378194,6.44930487 3.7307792,6.85290308 L12.0056789,15.7116802 Z" fill="#000000"/>
+																</g>
+															</svg><!--end::Svg Icon--></span><br><br>
+
+															<!-- Button trigger modal-->
+															<a href="#"  style="margin-top: 50px;" data-toggle="modal" data-target="#exampleModalScrola">New Banner</a>
+															<!-- Modal-->
+															<div class="modal fade" id="exampleModalScrola" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+																<div class="modal-dialog modal-dialog-scrollable" role="document">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<h5 class="modal-title" id="exampleModalLabel">Create Banner</h5>
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																				<i aria-hidden="true" class="ki ki-close"></i>
+																			</button>
+																		</div>
+																		<div class="modal-body" style="height: 300px;">
+																			<div class="modal-content">
+																				<form action="{% url 'create_banner_url' %}" method="post" enctype="multipart/form-data">
+																					{% csrf_token %}
+
+																					<!-- Add input fields for each attribute of the Home model -->
+																					<label>Name:</label>
+																					<input type="text" name="banner" required><br><br>
+
+																					<label>Description:</label>
+																					<input type="text" name="description" required><br><br>
+
+																					<label>Home Image:</label>
+																					<input type="file" name="img" accept="image/*" required><br><br>
+
+																					<div class="modal-footer">
+																						<button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
+																						<button type="submit" class="btn btn-primary font-weight-bold">Save changes</button>
+																					</div>
+																				</form>
+																			</div>
+																		</div>
+
+																	</div>
+																</div>
+															</div>
+
+
+														</div>
+													</div>
+													<!--end::Row-->
+												</div>
+												<!--end::Stats-->
+											</div>
+											<!--end::Body-->
+										</div>
+										<!--end::Mixed Widget 1-->
+									</div>
+									<div class="col-lg-6 col-xxl-8">
+										<!--begin::List Widget 9-->
+										<div class="card card-custom gutter-b">
+											<!--begin::Header-->
+											<div class="card-header border-0 py-5">
+												<h3 class="card-title align-items-start flex-column">
+													<span class="card-label font-weight-bolder text-dark">Users</span>
+												</h3>
+
+											</div>
+											<!--end::Header-->
+											<!--begin::Body-->
+											<div class="card-body pt-0 pb-3">
+												<!--begin::Table-->
+												<div class="table-responsive">
+													<table class="table table-head-custom table-head-bg table-vertical-center table-borderless">
+														<thead>
+															<tr class="bg-gray-100 text-left">
+																<th style="min-width: 250px" class="pl-7">
+																	<span class="text-dark-75">full name</span>
+																</th>
+																<th style="min-width: 130px">phone</th>
+																<th style="min-width: 110px">status</th>
+																<th style="min-width: 110px">img</th>
+																<th style="min-width: 110px">Delete</th>
+															</tr>
+														</thead>
+														<tbody>
+														{% for i in user %}
+															<tr>
+																<td class="pl-0 py-8">
+																	<div class="d-flex align-items-center">
+																		<div class="symbol symbol-50 flex-shrink-0 mr-4">
+																			<div class="symbol-label" style="background-image: url('{% static 'assets/media/stock-600x400/img-26.jpg' %}')"></div>
+																		</div>
+																		<div>
+																			<a href="{% url 'user_detail_url' i.pk %}" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">{{ i.username }}</a>
+																		</div>
+																	</div>
+																</td>
+																<td>
+																	<span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ i.phone_number }}</span>
+																</td>
+																<td>
+																	<span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ i.is_superuser }}</span>
+																</td>
+																{% if i.img %}
+																<td>
+																	<span class="text-dark-75 font-weight-bolder d-block font-size-lg"><img height="50" width="100" src="{{ i.img.url }}" alt="bu yerda rasm bor"></span>
+																</td>
+																{% else %}
+																<td>
+																	<span class="text-dark-75 font-weight-bolder d-block font-size-lg">bu yerda rasm bor edi</span>
+																</td>
+																{% endif %}
+																<td>
+																	<!-- Button trigger modal-->
+																	<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteHome{{ i.id }}">
+																		Delete
+																	</button>
+
+																	<!-- Modal-->
+																	<div class="modal fade" id="DeleteHome{{ i.id }}" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+																		<div class="modal-dialog" role="document">
+																			<div class="modal-content">
+																				<div class="modal-header">
+																					<h5 class="modal-title" id="exampleModalLabel">O'chirish</h5>
+																					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																						<i aria-hidden="true" class="ki ki-close"></i>
+																					</button>
+																				</div>
+																				<div class="modal-body">
+																					O'chirib yuborishga aminmisiz
+																				</div>
+																				<div class="modal-footer">
+																					<button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
+																					<button type="button" class="btn btn-light"><a href="{% url 'delete_user_url' i.id %}" class="btn btn-light-danger font-weight-bold mr-2">Delete</a></button>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</td>
+
+															</tr>
+														{% endfor %}
+														</tbody>
+													</table>
+												</div>
+												<!--end::Table-->
+											</div>
+											<!--end::Body-->
+										</div>
+										<!--end: List Widget 9-->
+									</div>
+
+								</div>
+								<div class="row">
+									<div class="col-12 col-lg-12 d-flex">
+									  <div class="card flex-fill w-100">
+										<div class="card-body">
+										<div class="card">
+										<div>
+										  <canvas id="myChart"></canvas>
+										</div>
+										<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+										<script>
+											const ctx = document.getElementById('myChart');
+											new Chart(ctx, {
+											type: 'line',
+											data: {
+											  labels: [{% for i in qs %} "{{ i.day }} {{ i.mon }}", {% endfor %}],
+											  datasets: [{
+											  label: '# of Votes',
+											  data: [{% for x in qs %} {{ x.n }}, {% endfor %}],
+											  borderWidth: 2
+											  }]
+											},
+											options: {
+											  scales: {
+											  y: {
+											  beginAtZero: true
+											  }
+											  }
+											}
+											});
+										</script>
+										</div>
+										</div>
+										</div>
+									  </div>
+									</div>
+							</div>
+							<!--end::Container-->
+						</div>
+						<!--end::Entry-->
+					</div>
+					<!--end::Content-->
+{% endblock %}

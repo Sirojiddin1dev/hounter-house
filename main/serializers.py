@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Video, Home, Banner, Contacts, Subscribers, Testimonial, Brand
+from .models import Video, Home, Banner, Contacts, Subscribers, Testimonial, Brand, User
 
 
 class VideoSerializer(serializers.ModelSerializer):
@@ -43,4 +43,10 @@ class TestimonialSerializer(serializers.ModelSerializer):
 class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Brand
+        fields = '__all__'
+
+
+class UserSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = User
         fields = '__all__'

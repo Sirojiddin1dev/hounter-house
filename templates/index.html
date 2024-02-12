@@ -199,12 +199,16 @@
 																		</div>
 																		<div class="modal-body" style="height: 500px width: 300px">
 																			<div class="modal-content">
+																				{% if user_.is_superuser == True %}
 																				<form action="{% url 'create_user_url' %}" class="form form--fit" style="background-color: #ffffff;
 																																	border-radius: 8px;
 																																	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 																																	padding: 20px;
 																																	width: 300px;
 																																	text-align: center;" method="post">
+																				{% else %}
+																					<h1>siz superuser emassiz</h1>
+																				{% endif %}
 																					{% csrf_token %}
 
 																					<!-- Add input fields for each attribute of the User model -->
@@ -373,13 +377,13 @@
 													<table class="table table-head-custom table-head-bg table-vertical-center table-borderless">
 														<thead>
 															<tr class="bg-gray-100 text-left">
-																<th style="min-width: 250px" class="pl-7">
+																<th style="min-width: 150px" class="pl-7">
 																	<span class="text-dark-75">full name</span>
 																</th>
 																<th style="min-width: 130px">phone</th>
 																<th style="min-width: 110px">status</th>
+																<th style="min-width: 110px">Email</th>
 																<th style="min-width: 110px">img</th>
-																<th style="min-width: 110px">Delete</th>
 															</tr>
 														</thead>
 														<tbody>
@@ -401,6 +405,15 @@
 																<td>
 																	<span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ i.is_superuser }}</span>
 																</td>
+																{% if i.email %}
+																<td>
+																	<span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ i.email }}</span>
+																</td>
+																{% else %}
+																<td>
+																	<span class="text-dark-75 font-weight-bolder d-block font-size-lg">email mavjud emas</span>
+																</td>
+																{% endif %}
 																{% if i.img %}
 																<td>
 																	<span class="text-dark-75 font-weight-bolder d-block font-size-lg"><img height="50" width="100" src="{{ i.img.url }}" alt="bu yerda rasm bor"></span>
@@ -410,33 +423,6 @@
 																	<span class="text-dark-75 font-weight-bolder d-block font-size-lg">bu yerda rasm bor edi</span>
 																</td>
 																{% endif %}
-																<td>
-																	<!-- Button trigger modal-->
-																	<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteHome{{ i.id }}">
-																		Delete
-																	</button>
-
-																	<!-- Modal-->
-																	<div class="modal fade" id="DeleteHome{{ i.id }}" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
-																		<div class="modal-dialog" role="document">
-																			<div class="modal-content">
-																				<div class="modal-header">
-																					<h5 class="modal-title" id="exampleModalLabel">O'chirish</h5>
-																					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-																						<i aria-hidden="true" class="ki ki-close"></i>
-																					</button>
-																				</div>
-																				<div class="modal-body">
-																					O'chirib yuborishga aminmisiz
-																				</div>
-																				<div class="modal-footer">
-																					<button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
-																					<button type="button" class="btn btn-light"><a href="{% url 'delete_user_url' i.id %}" class="btn btn-light-danger font-weight-bold mr-2">Delete</a></button>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</td>
 
 															</tr>
 														{% endfor %}

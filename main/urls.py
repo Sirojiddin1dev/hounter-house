@@ -7,6 +7,7 @@ urlpatterns = [
     path('update_user/<int:pk>/', update_user_view, name='update_user_url'),
     path('user/', user_view, name='users_url'),
     path('', login_view, name='login_url'),
+    path('logout/', logout_view, name='logout_url'),
     path('create-house/', create_home_view, name='create_house_url'),
     path('create-brand/', create_brand, name='create_brand_url'),
     path('update-brand/<int:pk>/', update_brand, name='update_brand_url'),

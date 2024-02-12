@@ -294,7 +294,8 @@ def home_view(request):
        "today":today,
        "month":months,
         "qs": mon_list,
-        'user': User.objects.all().order_by('-id')[:4]
+        'user': User.objects.all().order_by('-id')[:4],
+        'user_': request.user
     }
     print(today)
     return render(request, 'index.html',context)
@@ -355,3 +356,8 @@ def update_user_view(request, pk):
         return HttpResponse("Home object created successfully!")
 
     return redirect('user_detail_url')
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('login_url')

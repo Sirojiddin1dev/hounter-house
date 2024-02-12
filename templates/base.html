@@ -136,18 +136,12 @@ License: You must have a valid license purchased only from themeforest(the above
 									<div class="menu-submenu">
 										<i class="menu-arrow"></i>
 										<ul class="menu-subnav">
-											<li class="menu-item menu-item-parent" aria-haspopup="true">
-												<span class="menu-link">
-													<span class="menu-text">Applications</span>
-												</span>
-											</li>
 											<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 												<a href="{% url 'home_page_url' %}" class="menu-link menu-toggle">
 													<i class="menu-bullet menu-bullet-line">
 														<span></span>
 													</i>
 													<span class="menu-text">New Home</span>
-													<i class="menu-arrow"></i>
 												</a>
 											</li>
 										</ul>
@@ -166,7 +160,6 @@ License: You must have a valid license purchased only from themeforest(the above
 														<span></span>
 													</i>
 													<span class="menu-text">Popular Home</span>
-													<i class="menu-arrow"></i>
 												</a>
 											</li>
 										</ul>
@@ -185,7 +178,6 @@ License: You must have a valid license purchased only from themeforest(the above
 														<span></span>
 													</i>
 													<span class="menu-text">Best Deals Home</span>
-													<i class="menu-arrow"></i>
 												</a>
 											</li>
 										</ul>
@@ -204,7 +196,6 @@ License: You must have a valid license purchased only from themeforest(the above
 														<span></span>
 													</i>
 													<span class="menu-text">Apartment</span>
-													<i class="menu-arrow"></i>
 												</a>
 											</li>
 										</ul>
@@ -223,7 +214,6 @@ License: You must have a valid license purchased only from themeforest(the above
 														<span></span>
 													</i>
 													<span class="menu-text">House</span>
-													<i class="menu-arrow"></i>
 												</a>
 											</li>
 										</ul>
@@ -242,7 +232,6 @@ License: You must have a valid license purchased only from themeforest(the above
 														<span></span>
 													</i>
 													<span class="menu-text">Villa</span>
-													<i class="menu-arrow"></i>
 												</a>
 											</li>
 										</ul>
@@ -279,7 +268,6 @@ License: You must have a valid license purchased only from themeforest(the above
 														<span></span>
 													</i>
 													<span class="menu-text">All Users</span>
-													<i class="menu-arrow"></i>
 												</a>
 											</li>
 										</ul>
@@ -298,7 +286,6 @@ License: You must have a valid license purchased only from themeforest(the above
 														<span></span>
 													</i>
 													<span class="menu-text">Brand and Banner</span>
-													<i class="menu-arrow"></i>
 												</a>
 											</li>
 										</ul>
@@ -1891,12 +1878,11 @@ License: You must have a valid license purchased only from themeforest(the above
 				<!--begin::Header-->
 				<div class="d-flex align-items-center mt-5">
 					<div class="symbol symbol-100 mr-5">
-						<div class="symbol-label" style="background-image:url('assets/media/users/300_21.jpg')"></div>
+						<div class="symbol-label" style="background-image:url('{{ user_.img.url }}')"></div>
 						<i class="symbol-badge bg-success"></i>
 					</div>
 					<div class="d-flex flex-column">
-						<a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">James Jones</a>
-						<div class="text-muted mt-1">Application Developer</div>
+						<a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">{{ user_.username }}</a>
 						<div class="navi mt-2">
 							<a href="#" class="navi-item">
 								<span class="navi-link p-0 pb-2">
@@ -1913,10 +1899,10 @@ License: You must have a valid license purchased only from themeforest(the above
 											<!--end::Svg Icon-->
 										</span>
 									</span>
-									<span class="navi-text text-muted text-hover-primary">jm@softplus.com</span>
+									<span class="navi-text text-muted text-hover-primary">{{ user_.email }}</span>
 								</span>
 							</a>
-							<a href="#" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Sign Out</a>
+							<a href="{% url 'logout_url' %}" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Sign Out</a>
 						</div>
 					</div>
 				</div>
